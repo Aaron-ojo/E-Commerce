@@ -1,20 +1,14 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import ProductList from "./components/ProductList";
-import Cart from "./components/Cart";
+import Footer from "./components/Footer";
 
 function App() {
-  const [cart, setCart] = useState([]);
-
-  const addToCart = (product) => {
-    setCart([...cart, product]);
-  };
-
   return (
     <div>
-      <Navbar cartCount={cart.length} />
-      <ProductList addToCart={addToCart} />
-      <Cart cart={cart} removeFromCart={removeFromCart} />
+      <Navbar />
+      <ProductList />
+      <Footer />
     </div>
   );
 }
