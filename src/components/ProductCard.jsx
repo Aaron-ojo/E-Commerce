@@ -11,7 +11,10 @@ const ProductCard = ({ product, addToCart }) => {
       </h2>
       <p className="text-blue-600 font-bold mb-2">${product.price}</p>
       <button
-        onClick={() => addToCart(product)}
+        onClick={() => {
+          console.log("BUTTON CLICKED!", product.title);
+          addToCart(product);
+        }}
         className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
       >
         Add to Cart
