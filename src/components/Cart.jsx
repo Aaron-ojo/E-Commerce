@@ -1,4 +1,10 @@
-const Cart = ({ cart, removeFromCart, incrementQty, decrementQty }) => {
+const Cart = ({
+  cart,
+  removeFromCart,
+  incrementQty,
+  decrementQty,
+  totalPrice,
+}) => {
   return (
     <section className="mt-10 max-w-4xl mx-auto px-4">
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">Your Cart</h2>
@@ -52,13 +58,32 @@ const Cart = ({ cart, removeFromCart, incrementQty, decrementQty }) => {
                   >
                     Remove
                   </button>
-                  <p className="text-sm text-gray-600 mt-1">
-                    ${(item.quantity * item.price).toFixed(2)}
+                </div>
+              </div>
+              {/* Checkout Section */}
+              <div className="flex flex-col sm:flex-row items-center justify-between bg-white rounded-lg shadow p-4 mt-6">
+                <div>
+                  <p className="text-gray-600">Total</p>
+                  <p className="text-xl font-semibold text-blue-700">
+                    ${totalPrice}
                   </p>
                 </div>
               </div>
             </div>
           ))}
+          {/* Checkout Section */}
+          <div className="flex flex-col sm:flex-row items-center justify-between bg-white rounded-lg shadow p-4 mt-6">
+            <div>
+              <p className="text-gray-600">Total</p>
+              <p className="text-xl font-semibold text-blue-700">
+                ${totalPrice}
+              </p>
+            </div>
+
+            <button className="bg-blue-600 text-white px-5 py-2 rounded-md shadow hover:bg-blue-700 transition mt-4 sm:mt-0">
+              Proceed to Checkout
+            </button>
+          </div>
         </div>
       )}
     </section>
