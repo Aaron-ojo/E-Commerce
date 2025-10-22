@@ -1,6 +1,15 @@
+import { useNavigate } from "react-router-dom";
+
 const ProductCard = ({ product, addToCart }) => {
+  const navigate = useNavigate();
+
   return (
-    <div className="border rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center bg-white">
+    <div
+      className="border rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center bg-white"
+      onClick={() => {
+        navigate(`products/${product.id}`);
+      }}
+    >
       <img
         src={product.image}
         alt={product.title}

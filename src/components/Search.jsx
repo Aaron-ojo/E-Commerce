@@ -7,7 +7,7 @@ const Search = ({
   setSelectedCategory,
 }) => {
   return (
-    <div className="md:w-full container mx-auto md:flex p-4 md:justify-around mt-24 md:bg-gray-500 rounded-lg w-2/3 bg-gray-700 space-y-4 text-white">
+    <div className="md:w-full container mx-auto md:flex p-4 md:justify-around mt-24 md:bg-gray-900 rounded-lg w-2/3 bg-gray-900 space-y-4 text-white">
       <input
         className="border rounded-lg md:w-1/2 p-2"
         value={searchTerm}

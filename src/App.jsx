@@ -4,12 +4,14 @@ import ProductList from "./components/ProductList";
 import Footer from "./components/Footer";
 import Cart from "./components/Cart";
 import Search from "./components/Search";
+import ProductDetail from "./components/ProductDetails";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   const [cart, setCart] = useState([]);
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState("search for item");
+  const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [priceRange, setPriceRange] = useState({ min: 0, max: 1000 });
 
@@ -93,30 +95,47 @@ function App() {
     .toFixed(2);
 
   return (
-    <div>
-      <Navbar cartCount={cartCount} />
-      <Search
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-        priceRange={priceRange}
-        setPriceRange={setPriceRange}
-      />
-      <ProductList
-        products={filteredProducts}
-        isLoading={isLoading}
-        addToCart={addToCart}
-      />
-      <Cart
-        cart={cart}
-        removeFromCart={removeFromCart}
-        incrementQty={incrementQty}
-        decrementQty={decrementQty}
-        totalPrice={totalPrice}
-      />
-      <Footer />
-    </div>
+    <Router>
+      <div>
+        <Navbar cartCount={cartCount} />
+        <Search
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+          priceRange={priceRange}
+          setPriceRange={setPriceRange}
+        />
+
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <ProductList
+                  products={filteredProducts}
+                  isLoading={isLoading}
+                  addToCart={addToCart}
+                />
+                <Cart
+                  cart={cart}
+                  removeFromCart={removeFromCart}
+                  incrementQty={incrementQty}
+                  decrementQty={decrementQty}
+                  totalPrice={totalPrice}
+                />
+              </>
+            }
+          />
+          <Route
+            path="/products/:productId"
+            element={<ProductDetail addToCart={addToCart} />}
+          />
+        </Routes>
+
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
